@@ -50,11 +50,24 @@ def game():
 # more like a function handler than a game tbh
 
 
-def playerchoice():
-    pass
+def playerchoice(testboard):
 
+  available_squares = []
 
-# input ez
+  for x in testboard:
+    if testboard[x] == " ":
+      available_squares.append(x)
+  loop = True
+  while loop:
+    choice = input("\nenter a square using your num pad: ")
+    try:
+      if int(choice) in available_squares:
+        loop = False
+        return choice
+      else:
+        print("\ninvalid response")
+    except:
+      print("\ninvalid response")
 
 
 def cpuchoice(testboard):
