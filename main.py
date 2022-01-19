@@ -1,3 +1,5 @@
+import random
+
 board = {
     # each square gets a number, 1 = top left, 2 = top center, etc.
     1: " ",
@@ -55,55 +57,59 @@ def playerchoice():
 # input ez
 
 
-def cpuchoice():
-    pass
+def cpuchoice(board):
 
+    for x in board:
+        fakeboard = board.copy()
+        if board[x] == " ":
+            fakeboard[x] = "x"
+            result = checkwin(fakeboard)
+            if result == "x":
+                return x
 
-# math
-# *beep boop beep* (computer sounds)
+    available_squares = []
+
+    for z in board:
+        if board[z] == " ":
+            available_squares.append(z)
+    return random.choice(available_squares)
 
 
 def checkwin(board):
 
-  #checking if x won
-    if (board[1] == "x") and (board[2] == "x" and board[3] == "x"):
+    #checking if x won
+    if (board[1] == "x") and (board[2] == "x") and (board[3] == "x"):
         return "x"
-    elif (board[4] == "x") and (board[5] == "x" and board[6] == "x"):
+    elif (board[4] == "x") and (board[5] == "x") and (board[6] == "x"):
         return "x"
-    elif (board[7] == "x") and (board[8] == "x" and board[9] == "x"):
+    elif (board[7] == "x") and (board[8] == "x") and (board[9] == "x"):
         return "x"
-    elif (board[1] == "x") and (board[5] == "x" and board[9] == "x"):
+    elif (board[1] == "x") and (board[5] == "x") and (board[9] == "x"):
         return "x"
-    elif (board[3] == "x") and (board[5] == "x" and board[7] == "x"):
+    elif (board[3] == "x") and (board[5] == "x") and (board[7] == "x"):
         return "x"
-    elif (board[1] == "x") and (board[4] == "x" and board[7] == "x"):
+    elif (board[1] == "x") and (board[4] == "x") and (board[7] == "x"):
         return "x"
-    elif (board[2] == "x") and (board[5] == "x" and board[8] == "x"):
+    elif (board[2] == "x") and (board[5] == "x") and (board[8] == "x"):
         return "x"
-    elif (board[3] == "x") and (board[6] == "x" and board[9] == "x"):
+    elif (board[3] == "x") and (board[6] == "x") and (board[9] == "x"):
         return "x"
 
-  #checking if o won
-    elif (board[1] == "o") and (board[2] == "o" and board[3] == "o"):
+#checking if o won
+    elif (board[1] == "o") and (board[2] == "o") and (board[3] == "o"):
         return "o"
-    elif (board[4] == "o") and (board[5] == "o" and board[6] == "o"):
+    elif (board[4] == "o") and (board[5] == "o") and (board[6] == "o"):
         return "o"
-    elif (board[7] == "o") and (board[8] == "o" and board[9] == "o"):
+    elif (board[7] == "o") and (board[8] == "o") and (board[9] == "o"):
         return "o"
-    elif (board[1] == "o") and (board[5] == "o" and board[9] == "o"):
+    elif (board[1] == "o") and (board[5] == "o") and (board[9] == "o"):
         return "o"
-    elif (board[3] == "o") and (board[5] == "o" and board[7] == "o"):
+    elif (board[3] == "o") and (board[5] == "o") and (board[7] == "o"):
         return "o"
-    elif (board[1] == "o") and (board[4] == "o" and board[7] == "o"):
+    elif (board[1] == "o") and (board[4] == "o") and (board[7] == "o"):
         return "o"
-    elif (board[2] == "o") and (board[5] == "o" and board[8] == "o"):
+    elif (board[2] == "o") and (board[5] == "o") and (board[8] == "o"):
         return "o"
-    elif (board[3] == "o") and (board[6] == "o" and board[9] == "o"):
+    elif (board[3] == "o") and (board[6] == "o") and (board[9] == "o"):
         return "o"
 
-  #returns false if nobody has won
-    else:
-        return False
-
-
-main()
