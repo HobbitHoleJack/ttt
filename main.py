@@ -14,12 +14,12 @@ board = {
 }
 
 
-def printboard(board):
-    print(board[1], "|", board[2], "|", board[3])
+def printboard(testboard):
+    print(testboard[1], "|", testboard[2], "|", testboard[3])
     print("---------")
-    print(board[4], "|", board[5], "|", board[6])
+    print(testboard[4], "|", testboard[5], "|", testboard[6])
     print("---------")
-    print(board[7], "|", board[8], "|", board[9])
+    print(testboard[7], "|", testboard[8], "|", testboard[9])
 
 
 def main():
@@ -57,11 +57,10 @@ def playerchoice():
 # input ez
 
 
-def cpuchoice(board):
-
-    for x in board:
-        fakeboard = board.copy()
-        if board[x] == " ":
+def cpuchoice(testboard):
+    for x in testboard:
+        fakeboard = testboard.copy()
+        if testboard[x] == " ":
             fakeboard[x] = "x"
             result = checkwin(fakeboard)
             if result == "x":
@@ -69,47 +68,44 @@ def cpuchoice(board):
 
     available_squares = []
 
-    for z in board:
-        if board[z] == " ":
+    for z in testboard:
+        if testboard[z] == " ":
             available_squares.append(z)
     return random.choice(available_squares)
 
 
-def checkwin(board):
-
-    #checking if x won
-    if (board[1] == "x") and (board[2] == "x") and (board[3] == "x"):
+def checkwin(testboard):
+    if (testboard[1] == "x") and (testboard[2] == "x") and (testboard[3] == "x"):
         return "x"
-    elif (board[4] == "x") and (board[5] == "x") and (board[6] == "x"):
+    elif (testboard[4] == "x") and (testboard[5] == "x") and (testboard[6] == "x"):
         return "x"
-    elif (board[7] == "x") and (board[8] == "x") and (board[9] == "x"):
+    elif (testboard[7] == "x") and (testboard[8] == "x") and (testboard[9] == "x"):
         return "x"
-    elif (board[1] == "x") and (board[5] == "x") and (board[9] == "x"):
+    elif (testboard[1] == "x") and (testboard[5] == "x") and (testboard[9] == "x"):
         return "x"
-    elif (board[3] == "x") and (board[5] == "x") and (board[7] == "x"):
+    elif (testboard[3] == "x") and (testboard[5] == "x") and (testboard[7] == "x"):
         return "x"
-    elif (board[1] == "x") and (board[4] == "x") and (board[7] == "x"):
+    elif (testboard[1] == "x") and (testboard[4] == "x") and (testboard[7] == "x"):
         return "x"
-    elif (board[2] == "x") and (board[5] == "x") and (board[8] == "x"):
+    elif (testboard[2] == "x") and (testboard[5] == "x") and (testboard[8] == "x"):
         return "x"
-    elif (board[3] == "x") and (board[6] == "x") and (board[9] == "x"):
+    elif (testboard[3] == "x") and (testboard[6] == "x") and (testboard[9] == "x"):
         return "x"
 
-#checking if o won
-    elif (board[1] == "o") and (board[2] == "o") and (board[3] == "o"):
+    # checking if o won
+    elif (testboard[1] == "o") and (testboard[2] == "o") and (testboard[3] == "o"):
         return "o"
-    elif (board[4] == "o") and (board[5] == "o") and (board[6] == "o"):
+    elif (testboard[4] == "o") and (testboard[5] == "o") and (testboard[6] == "o"):
         return "o"
-    elif (board[7] == "o") and (board[8] == "o") and (board[9] == "o"):
+    elif (testboard[7] == "o") and (testboard[8] == "o") and (testboard[9] == "o"):
         return "o"
-    elif (board[1] == "o") and (board[5] == "o") and (board[9] == "o"):
+    elif (testboard[1] == "o") and (testboard[5] == "o") and (testboard[9] == "o"):
         return "o"
-    elif (board[3] == "o") and (board[5] == "o") and (board[7] == "o"):
+    elif (testboard[3] == "o") and (testboard[5] == "o") and (testboard[7] == "o"):
         return "o"
-    elif (board[1] == "o") and (board[4] == "o") and (board[7] == "o"):
+    elif (testboard[1] == "o") and (testboard[4] == "o") and (testboard[7] == "o"):
         return "o"
-    elif (board[2] == "o") and (board[5] == "o") and (board[8] == "o"):
+    elif (testboard[2] == "o") and (testboard[5] == "o") and (testboard[8] == "o"):
         return "o"
-    elif (board[3] == "o") and (board[6] == "o") and (board[9] == "o"):
+    elif (testboard[3] == "o") and (testboard[6] == "o") and (testboard[9] == "o"):
         return "o"
-
