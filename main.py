@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 board = {
     # each square gets a number, 1 = top left, 2 = top center, etc.
@@ -19,7 +20,7 @@ def printboard(testboard):
     print("---------")
     print(testboard[4], "|", testboard[5], "|", testboard[6])
     print("---------")
-    print(testboard[7], "|", testboard[8], "|", testboard[9])
+    print(testboard[7], "|", testboard[8], "|", testboard[9], "\n")
 
 
 def main():
@@ -44,11 +45,24 @@ def main():
 
 
 def game():
-    pass
-
-
-# more like a function handler than a game tbh
-
+    global board 
+    playing = True
+    while playing:
+        pc = playerchoice(board)
+        board[pc] = "o"
+        printboard(board)
+        if checkwin(board) != False:
+          print(checkwin(board), "won")
+          sleep(1)
+          exit()
+        sleep(.5)
+        cc = cpuchoice(board)
+        board[cc] = "x"
+        printboard(board)
+        if checkwin(board) != False:
+          print(checkwin(board), "won")
+          sleep(1)
+          exit()
 
 def playerchoice(testboard):
 
@@ -60,15 +74,22 @@ def playerchoice(testboard):
   loop = True
   while loop:
     choice = input("\nenter a square using your num pad: ")
-    try:
-      if int(choice) in available_squares:
-        loop = False
-        return choice
-      else:
-        print("\ninvalid response")
-    except:
+    if int(choice) in available_squares:
+      loop = False
+      cipher = {
+        1:7,
+        2:8,
+        3:9,
+        4:4,
+        5:5,
+        6:6,
+        7:1,
+        8:2,
+        9:3
+      }
+      return cipher[int(choice)]
+    else:
       print("\ninvalid response")
-
 
 def cpuchoice(testboard):
     for x in testboard:
@@ -122,3 +143,6 @@ def checkwin(testboard):
         return "o"
     elif (testboard[3] == "o") and (testboard[6] == "o") and (testboard[9] == "o"):
         return "o"
+    else:
+      return False
+main()
