@@ -1,25 +1,12 @@
 import random
 from time import sleep
 
-resetboard = {
-    # each square gets a number, 1 = top left, 2 = top center, etc.
-    1: " ",
-    2: " ",
-    3: " ",
-    4: " ",
-    5: " ",
-    6: " ",
-    7: " ",
-    8: " ",
-    9: " "
-}
-
-def printboard(testboard):
-    print(testboard[1], "|", testboard[2], "|", testboard[3])
+def printboard(resetboard):
+    print(resetboard[1], "|", resetboard[2], "|", resetboard[3])
     print("---------")
-    print(testboard[4], "|", testboard[5], "|", testboard[6])
+    print(resetboard[4], "|", resetboard[5], "|", resetboard[6])
     print("---------")
-    print(testboard[7], "|", testboard[8], "|", testboard[9], "\n")
+    print(resetboard[7], "|", resetboard[8], "|", resetboard[9], "\n")
 
 
 def main():
@@ -39,15 +26,25 @@ def main():
                 print("---------")
                 print("1", "|", "2", "|", "3\n")
             elif start == "3":
-              print("stopping program")
+              print("\nstopping program")
               loop = False
         else:
             print("\nInvalid response\n")
 
 
 def game():
-    global resetboard
-    board = resetboard.copy()
+    board = {
+    # each square gets a number, 1 = top left, 2 = top center, etc.
+    1: " ",
+    2: " ",
+    3: " ",
+    4: " ",
+    5: " ",
+    6: " ",
+    7: " ",
+    8: " ",
+    9: " "
+}
     playing = True
     first = random.choice([1, 2])
     if first == 1:
@@ -90,12 +87,13 @@ def game():
 def playerchoice(testboard):
 
     available_squares = []
-
+    # find empty squares
     for x in testboard:
         if testboard[x] == " ":
             available_squares.append(x)
     loop = True
     while loop:
+      # convert user input to square number
         cipher = {
             1: 7,
             2: 8,
@@ -109,6 +107,7 @@ def playerchoice(testboard):
         }
         choice = input("\nenter a square using your num pad: ")
         try:
+            # if the input is convertable to an integer, and the square is empty, the function returns the square number back to the game function
             if cipher[int(choice)] in available_squares:
                 loop = False
 
@@ -116,6 +115,7 @@ def playerchoice(testboard):
             else:
                 print("\ninvalid response")
         except:
+          # runs if user input is not convertable to an integer
             print("\ninvalid response")
 
 
@@ -127,7 +127,7 @@ def cpuchoice(testboard):
         # fakeboard is a temporary copy of the main board that is used to check future
         # moves without editing the main board
 
-        # this loop looks for one move wins by checkng every possible move and seeing if the move would win the game
+        # this loop looks for one move wins by checkng every possible move and seeing if the move will win the game
 
         if testboard[x] == " ":
             fakeboard[x] = "x"
@@ -146,6 +146,7 @@ def cpuchoice(testboard):
 
 
 def checkwin(testboard):
+  #checking if x won
     if (testboard[1] == "x") and (testboard[2] == "x") and (testboard[3]
                                                             == "x"):
         return "x"
@@ -198,9 +199,11 @@ def checkwin(testboard):
         return "o"
       
     else:
+      #draw condition
+      # if there's no more open squares, and the game isn't a win, it's a draw
       sum = 0
-      for i in testboard:
-        if testboard[i] != " ":
+      for x in testboard:
+        if testboard[x] != " ":
           sum += 1
       if sum == 9:
         return "Draw, nobody"
