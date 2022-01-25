@@ -145,6 +145,11 @@ def cpuchoice(testboard):
     return random.choice(available_squares)
 
 
+
+def goesfirst(parameter):
+  #make some dumb crap that uses a loop, a parameter, and an if statement 
+
+
 def checkwin(testboard):
   #checking if x won
     if (testboard[1] == "x") and (testboard[2] == "x") and (testboard[3]
