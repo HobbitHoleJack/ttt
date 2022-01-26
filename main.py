@@ -1,5 +1,7 @@
 import random
+import time
 from time import sleep
+start_time = time.time()
 
 def printboard(resetboard):
     print(resetboard[1], "|", resetboard[2], "|", resetboard[3])
@@ -33,6 +35,7 @@ def main():
 
 
 def game():
+    menu_time = time.time()
     board = {
     # each square gets a number, 1 = top left, 2 = top center, etc.
     1: " ",
@@ -46,7 +49,7 @@ def game():
     9: " "
 }
     playing = True
-    first = random.choice([1, 2])
+    first = goesfirst(time.time() - start_time)
     if first == 1:
 
       while playing:
@@ -145,9 +148,21 @@ def cpuchoice(testboard):
     return random.choice(available_squares)
 
 
+def goesfirst(p1):
+  s = 1
+  p1 = p1 * 1000
+  p1 = int(p1)
+  p2 = 5
 
-def goesfirst(parameter):
-  #make some dumb crap that uses a loop, a parameter, and an if statement 
+  for i in range(p1):
+    s += 1
+
+  num = ((p1 * p2) * s)
+
+  if num == 0:
+    return 1
+  else:
+    return 2  
 
 
 def checkwin(testboard):
